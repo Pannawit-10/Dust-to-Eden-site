@@ -13,15 +13,17 @@ body {
 }
 
 header {
-    background: linear-gradient(to right, #4caf50, #81c784);
+    /* Updated background to match the footer's color */
+    background-color: #388e3c; /* This is the footer's background color */
     color: white;
     padding: 2rem;
     text-align: center;
 }
 
 .hero {
-    background: url('forest.jpg') center/cover no-repeat;
-    background-size: cover;
+    /* Remove background image properties from .hero to let the header background show */
+    /* background: url('forest.jpg') center/cover no-repeat; */
+    /* background-size: cover; */
     text-shadow: 1px 1px 3px black;
 }
 
