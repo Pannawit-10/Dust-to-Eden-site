@@ -1,127 +1,45 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity Web Player | DTE</title>
-    <link rel="shortcut icon" href="TemplateData/favicon.ico">
-    <link rel="stylesheet" href="TemplateData/style.css">
-  </head>
-  <body>
-    <div id="unity-container" class="unity-desktop">
-      <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
-      <div id="unity-loading-bar">
-        <div id="unity-logo"></div>
-        <div id="unity-progress-bar-empty">
-          <div id="unity-progress-bar-full"></div>
-        </div>
-      </div>
-      <div id="unity-warning"> </div>
-      <div id="unity-footer">
-        <div id="unity-logo-title-footer"></div>
-        <div id="unity-fullscreen-button"></div>
-        <div id="unity-build-title">DTE</div>
-      </div>
-    </div>
-    <script>
-      var canvas = document.querySelector("#unity-canvas");
-
-      // Shows a temporary message banner/ribbon for a few seconds, or
-      // a permanent error message on top of the canvas if type=='error'.
-      // If type=='warning', a yellow highlight color is used.
-      // Modify or remove this function to customize the visually presented
-      // way that non-critical warnings and error messages are presented to the
-      // user.
-      function unityShowBanner(msg, type) {
-        var warningBanner = document.querySelector("#unity-warning");
-        function updateBannerVisibility() {
-          warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
-        }
-        var div = document.createElement('div');
-        div.innerHTML = msg;
-        warningBanner.appendChild(div);
-        if (type == 'error') div.style = 'background: red; padding: 10px;';
-        else {
-          if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
-          setTimeout(function() {
-            warningBanner.removeChild(div);
-            updateBannerVisibility();
-          }, 5000);
-        }
-        updateBannerVisibility();
-      }
-
-      var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/WEB.loader.js";
-      var config = {
-        arguments: [],
-        dataUrl: buildUrl + "/WEB.data.br",
-        frameworkUrl: buildUrl + "/WEB.framework.js.br",
-        codeUrl: buildUrl + "/WEB.wasm.br",
-        streamingAssetsUrl: "StreamingAssets",
-        companyName: "Dust to Eden",
-        productName: "DTE",
-        productVersion: "0.1",
-        showBanner: unityShowBanner,
-      };
-
-      // By default, Unity keeps WebGL canvas render target size matched with
-      // the DOM size of the canvas element (scaled by window.devicePixelRatio)
-      // Set this to false if you want to decouple this synchronization from
-      // happening inside the engine, and you would instead like to size up
-      // the canvas DOM size and WebGL render target sizes yourself.
-      // config.matchWebGLToCanvasSize = false;
-
-      // If you would like all file writes inside Unity Application.persistentDataPath
-      // directory to automatically persist so that the contents are remembered when
-      // the user revisits the site the next time, uncomment the following line:
-      // config.autoSyncPersistentDataPath = true;
-      // This autosyncing is currently not the default behavior to avoid regressing
-      // existing user projects that might rely on the earlier manual
-      // JS_FileSystem_Sync() behavior, but in future Unity version, this will be
-      // expected to change.
-
-      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-        // Mobile device style: fill the whole browser client area with the game canvas:
-
-        var meta = document.createElement('meta');
-        meta.name = 'viewport';
-        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
-        document.getElementsByTagName('head')[0].appendChild(meta);
-        document.querySelector("#unity-container").className = "unity-mobile";
-        canvas.className = "unity-mobile";
-
-        // To lower canvas resolution on mobile devices to gain some
-        // performance, uncomment the following line:
-        // config.devicePixelRatio = 1;
-
-
-      } else {
-        // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
-        canvas.style.width = "960px";
-        canvas.style.height = "600px";
-      }
-
-      document.querySelector("#unity-loading-bar").style.display = "block";
-
-      var script = document.createElement("script");
-      script.src = loaderUrl;
-      script.onload = () => {
-        createUnityInstance(canvas, config, (progress) => {
-          document.querySelector("#unity-progress-bar-full").style.width = 100 * progress + "%";
-              }).then((unityInstance) => {
-                document.querySelector("#unity-loading-bar").style.display = "none";
-                document.querySelector("#unity-fullscreen-button").onclick = () => {
-                  unityInstance.SetFullscreen(1);
-                };
-
-              }).catch((message) => {
-                alert(message);
-              });
-            };
-
-      document.body.appendChild(script);
-
-    </script>
-  </body>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>คู่มือการใช้งาน</title>
+  <link rel="stylesheet" href="style.css">
+</head> 
+<body>
+  <header class="hero">
+    <h1>คู่มือและเอกสารประกอบ</h1>
+    <nav>
+        <a href="index.html">หน้าหลัก</a>
+        <a href="play.html">ทดลองเกม</a>
+        <a href="guide.html">คู่มือ</a>
+        <a href="team.html">ทีมพัฒนา</a>
+    </nav>
+  </header>
+  <main>
+  <section style="max-width: 900px; margin: auto; padding: 2rem; line-height: 1.8; font-size: 1.1rem;">
+    <h2 style="text-align: center; font-size: 2rem; margin-bottom: 1.5rem;">เกี่ยวกับโครงการ</h2>
+    <p>
+      ในวันที่โลกกำลังเผชิญกับปัญหาสิ่งแวดล้อมที่รุนแรงขึ้นเรื่อย ๆ ทั้งเรื่องภาวะโลกร้อน ป่าไม้ลดลง และการใช้ทรัพยากรอย่างฟุ่มเฟือย สิ่งเหล่านี้ส่งผลกระทบโดยตรงต่อชีวิตเราทุกคน โครงการ <strong>"ชุบชีวิตโลกใบเก่า (Dust to Eden)"</strong> จึงถูกสร้างขึ้นเพื่อเป็นส่วนหนึ่งในการแก้ไขปัญหานี้
+    </p>
+    <p>
+      เราเชื่อว่า <strong>"เกม"</strong> เป็นเครื่องมือที่มีพลังในการสร้างการเรียนรู้ที่สนุกและเข้าถึงง่าย โดยเฉพาะกับกลุ่มเยาวชน ด้วยเหตุนี้ เราได้พัฒนาเกมผจญภัยจำลองสถานการณ์ ที่จะพาคุณไปสำรวจและเรียนรู้แนวคิดการอนุรักษ์สิ่งแวดล้อม การใช้พลังงานสะอาด และการจัดการทรัพยากรอย่างยั่งยืน
+    </p>
+    <p>
+      ในเกม คุณจะรับบทเป็น <strong>"กล้า"</strong> นักวิทยาศาสตร์หนุ่มที่กลับมาบ้านเกิดเพื่อช่วยชุมชนจากภัยแล้งและผลกระทบจากโลกร้อน คุณจะได้ทำภารกิจต่าง ๆ เช่น ปลูกป่า เก็บขยะ เผชิญหน้ากับผู้บุกรุกป่า และเรียนรู้การเป็นพลเมืองสีเขียว เนื้อเรื่องและกลไกของเกมถูกออกแบบมาให้เชื่อมโยงกับปัญหาและแนวทางแก้ไขในชีวิตจริง
+    </p>
+    <p>
+      <strong>"ชุบชีวิตโลกใบเก่า"</strong> ไม่ใช่แค่เกมเพื่อความบันเทิง แต่ยังเป็นเครื่องมือการเรียนรู้ที่ผสมผสานเทคโนโลยีเข้ากับสิ่งแวดล้อม เพื่อสื่อสารเรื่องราวสำคัญเหล่านี้ให้เข้าถึงใจคนรุ่นใหม่ได้อย่างมีประสิทธิภาพ
+    </p>
+    <p style="text-align: center; font-weight: bold; font-size: 1.2rem; margin-top: 2rem;">
+      มาร่วมเป็นส่วนหนึ่งของการ <span style="color: #4caf50;">"ชุบชีวิตโลกใบเก่า"</span> ไปกับเรา
+    </p>
+    <div style="text-align: center; margin-top: 2rem;">
+      <a href="play.html" class="btn" style="background-color: #4caf50; color: white; padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-size: 1.2rem;">เล่นเลย</a>
+    </div>    
+  </section>
+</main>
+  <footer>
+    <p>&copy; 2025 Dust to Eden Project</p>
+  </footer>
+</body>
 </html>
