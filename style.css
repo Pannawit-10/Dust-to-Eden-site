@@ -1,16 +1,68 @@
-body { padding: 0; margin: 0 }
-#unity-container { position: absolute }
-#unity-container.unity-desktop { left: 50%; top: 50%; transform: translate(-50%, -50%) }
-#unity-container.unity-mobile { position: fixed; width: 100%; height: 100% }
-#unity-canvas { background: #231F20 }
-.unity-mobile #unity-canvas { width: 100%; height: 100% }
-#unity-loading-bar { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: none }
-#unity-logo { width: 154px; height: 130px; background: url('unity-logo-dark.png') no-repeat center }
-#unity-progress-bar-empty { width: 141px; height: 18px; margin-top: 10px; margin-left: 6.5px; background: url('progress-bar-empty-dark.png') no-repeat center }
-#unity-progress-bar-full { width: 0%; height: 18px; margin-top: 10px; background: url('progress-bar-full-dark.png') no-repeat center }
-#unity-footer { position: relative }
-.unity-mobile #unity-footer { display: none }
-#unity-logo-title-footer { float:left; width: 102px; height: 38px; background: url('unity-logo-title-footer.png') no-repeat center }
-#unity-build-title { float: right; margin-right: 10px; line-height: 38px; font-family: arial; font-size: 18px }
-#unity-fullscreen-button { cursor:pointer; float: right; width: 38px; height: 38px; background: url('fullscreen-button.png') no-repeat center }
-#unity-warning { position: absolute; left: 50%; top: 5%; transform: translate(-50%); background: white; padding: 10px; display: none }
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0; /* Keep this to remove default body margin */
+    padding: 0; /* Keep this */
+    background-color: #f0f7ef;
+    color: #2c2c2c;
+
+    /* --- Add these lines for the sticky footer --- */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensures body takes full viewport height */
+    /* ------------------------------------------- */
+}
+
+header {
+    /* Updated background to match the footer's color */
+    background-color: #388e3c; /* This is the footer's background color */
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}
+
+.hero {
+    /* Remove background image properties from .hero to let the header background show */
+    /* background: url('forest.jpg') center/cover no-repeat; */
+    /* background-size: cover; */
+    text-shadow: 1px 1px 3px black;
+}
+
+nav {
+    margin-top: 1rem;
+}
+
+nav a {
+    margin: 0 1rem;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+main {
+    max-width: 900px;
+    margin: auto;
+    padding: 2rem;
+    /* --- Add this line for the sticky footer --- */
+    flex-grow: 1; /* This makes main content grow and push footer down */
+    /* ------------------------------------------- */
+}
+
+footer {
+    background-color: #388e3c;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    /* --- Remove or adjust this line for the sticky footer --- */
+    /* margin-top: 2rem; */ /* This margin is no longer needed to push it down, as flex-grow does it */
+    /* -------------------------------------------------------- */
+}
+
+.btn {
+    background-color: #4caf50;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 1rem;
+}
